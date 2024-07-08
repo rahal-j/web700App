@@ -17,6 +17,8 @@ const HTTP_PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('views', __dirname + '/views');
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'home.html'));
