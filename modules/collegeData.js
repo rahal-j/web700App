@@ -39,6 +39,36 @@ module.exports.getAllStudents = function(){
     })
 }
 
+module.exports.updateStudent = function (studentData) {
+    return new Promise((resolve, reject) => {
+        const studentIndex = dataCollection.students.findIndex(student => student.studentNum == studentData.studentNum);
+
+        if (studentIndex === -1) {
+            reject("Student not found");
+        } else {
+            // Handle TA checkbox
+            studentData.TA = (studentData.TA === "on");
+
+            // Overwrite the existing student data with the new data
+            dataCollection.students[studentIndex] = studentData;
+            resolve();
+        }
+    });
+};
+
+
+module.exports.getCourseById = function (id) {
+    return new Promise((resolve, reject) => {
+        const course = dataCollection.courses.find(course => course.courseId == id);
+        if (course) {
+            resolve(course);
+        } else {
+            reject("query returned 0 results");
+        }
+    });
+};
+
+
 module.exports.getTAs = function () {
     return new Promise(function (resolve, reject) {
         var filteredStudents = [];
