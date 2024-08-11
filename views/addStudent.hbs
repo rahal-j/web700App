@@ -1,29 +1,96 @@
+<div class="row">
+    <main class="col-md-12">
+        <h2>Add a New Student</h2>
+        <form method="POST" action="/students/add">
+            <!-- Personal Information Section -->
+            <fieldset>
+                <legend>Personal Information</legend>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>First Name:</label>
+                            <input class="form-control" name="firstName" type="text" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Last Name:</label>
+                            <input class="form-control" name="lastName" type="text" required />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input class="form-control" name="email" type="email" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Address (Street):</label>
+                            <input class="form-control" name="addressStreet" type="text" required />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Address (City):</label>
+                            <input class="form-control" name="addressCity" type="text" required />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Address (Province):</label>
+                            <input class="form-control" name="addressProvince" type="text" required />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
 
-        <div class="row">
-            <main class="col-md-12">
-                <h2>Add a New Student</h2>
-                <form method="POST" action="/students/add">
-                    <div class="form-group">
-                        <label>First Name:</label>
-                        <input class="form-control" name="firstName" type="text" required />
+            <!-- Academic Information Section -->
+            <fieldset>
+                <legend>Academic Information</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>College Employment:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="TA" id="TA">
+                                <label class="form-check-label" for="TA">Teaching Assistant</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Last Name:</label>
-                        <input class="form-control" name="lastName" type="text" required />
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Enrollment Status:</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="fullTime" value="Full Time">
+                                <label class="form-check-label" for="fullTime">Full Time</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="partTime" value="Part Time">
+                                <label class="form-check-label" for="partTime">Part Time</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Email:</label>
-                        <input class="form-control" name="email" type="email" required />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Enrolled in Course:</label>
+                            {{#if courses}}
+                            <select class="form-select" name="course" id="course">
+                                <option value="">Select Course</option>
+                                {{#each courses}}
+                                <option value="{{this.courseId}}">{{this.courseCode}}</option>
+                                {{/each}}
+                            </select>
+                            {{else}}
+                            <div>No Courses</div>
+                            {{/if}}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Course:</label>
-                        <input class="form-control" name="course" type="text" required />
-                    </div>
-                    <div class="form-group">
-                        <label>Year:</label>
-                        <input class="form-control" name="year" type="number" required />
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Student</button>
-                </form>
-            </main>
-        </div>
+                </div>
+            </fieldset>
+            <hr />
+            <button type="reset" class="btn btn-danger">Reset Form</button>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+    </main>
+</div>

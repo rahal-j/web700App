@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <br>
-        <h2>Students</h2>
+        <h2>Students <a href="/students/add" class="btn btn-success float-end">Add New Student</a></h2>
         <hr />
         {{#unless students}}
             <div class="col-md-12 text-center">
@@ -18,6 +18,7 @@
                             <th>Address</th>
                             <th>Status</th>
                             <th>Course ID</th>
+                            <th></th> <!-- Header for the delete column -->
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,7 @@
                                 <td>{{this.addressStreet}}, {{this.addressCity}}, {{this.addressProvince}}</td>
                                 <td>{{this.status}}</td>
                                 <td><a href="/students?course={{this.course}}">{{this.course}}</a></td>
+                                <td><a href="/student/delete/{{this.studentNum}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this student?');">Remove</a></td>
                             </tr>
                         {{/each}}
                     </tbody>
